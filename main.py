@@ -27,5 +27,7 @@ time_filter_1 = results_df['start24'] <= now
 time_filter_2 = now <= results_df['end24']
 time_filter = time_filter_1 & time_filter_2
 day_filter = results_df['dayorder'] == now.isoweekday()
-date_time_filter = day_filter & time_filter
-print(results_df.loc[date_time_filter])
+date_time_filter = time_filter #& day_filter
+filtered_result = results_df.loc[date_time_filter]
+
+final_result = filtered_result.sort_values('applicant')
