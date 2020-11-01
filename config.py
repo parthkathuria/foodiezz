@@ -9,4 +9,4 @@ class AppConfig(BaseSettings):
     query_limit: int = Field(default=10, env="QUERY_LIMIT")
 
     class Config:
-        env_file = "config.env"
+        env_file = "env/config.env"
