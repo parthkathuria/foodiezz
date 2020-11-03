@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 import logging
 import traceback
-import requests
 from datetime import datetime
 from typing import List
+
+import requests
 from halo import Halo
 from prettytable import PrettyTable
 from pydantic import parse_obj_as
@@ -12,7 +13,7 @@ from config import AppConfig
 from models import SocrataData
 
 
-class App:
+class Foodiezz:
     def __init__(self):
         """
         The main class which loads the App config and interacts with the ApiService to retrieve Food truck data.
@@ -54,7 +55,8 @@ class App:
             # it is also filtering the result where 'start24' of the food truck data is less than the current time and
             # 'end24' is greater than equal to current time (start24 <= time_str <= end24). It is also filtering the
             # result by the day of the week by specifying dayorder=current_day_order. And finally it orders the result
-            # in ascending order of 'applicant' field which is the name of the Food Truck.
+            # in ascending order of 'applicant' field which is the name of the Food Truck. I am assuming the 'applicant'
+            # field is the name of the Food Truck
             socrata_data = self.api_service.select(
                 ['applicant', 'location', 'start24', 'end24', 'dayorder', 'dayofweekstr']).where(
                 start24__lte=time_str, end24__gte=time_str, dayorder=current_day_order).order_by('applicant').query(
@@ -170,7 +172,7 @@ if __name__ == '__main__':
     I call the print_table() method to print the table in formatted way.
     """
     try:
-        app = App()
+        app = Foodiezz()
         try:
             app.search()
             app.print_table()
@@ -191,4 +193,5 @@ if __name__ == '__main__':
             """
             app.done()
     except:
+        traceback.print_exc()
         logging.error("Unable to initialize the App!")

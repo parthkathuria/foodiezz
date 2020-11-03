@@ -18,4 +18,4 @@ class AppConfig(BaseSettings):
         """
         Subclass allows you to define meta data like the default path of the config file.
         """
-        env_file = "env/config.env"
+        env_file = "./env/config.env"
