@@ -14,7 +14,7 @@ from models import SocrataData
 
 class App:
     def __init__(self):
-        self.display_message("===============================Foodiezz===============================\n")
+        self.display_message("===============================| Foodiezz |===============================\n")
         self.display_message("Hello! Welcome to Foodiezz!")
         config = AppConfig()
         self.socrata_dataset_id = config.socrata_dataset_id
@@ -68,25 +68,29 @@ class App:
 
     def print_table(self, paginate=True):
         if self.total_foodtrucks_open > 0:
-            self.display_message("\nFound these Food Trucks that are open now:")
+            self.display_message("\nFound these Food Trucks that are open now:\n")
             if not paginate:
                 self.display_message(self.foodtruck_table.get_string(header=False, border=False))
             else:
                 for i in range(0, self.total_foodtrucks_open, self.page_limit):
                     self.display_message(
                         self.foodtruck_table.get_string(start=i, end=i + self.page_limit, header=False, border=False))
-                    self.__prompt_user(i)
+                    self.__show_prompt(i)
             self.display_message(
-                "==============================={} Food Trucks found===============================".format(
+                "===============================| {} Food Trucks found |===============================".format(
                     self.total_foodtrucks_open))
         else:
             self.display_message("\nUh-oh! Looks like no Food Truck is open right now!")
 
-    def __prompt_user(self, offset):
-        total_entries_shown = offset + self.page_limit if offset + self.page_limit < self.total_foodtrucks_open else self.total_foodtrucks_open
-        input("Showing {} of {} results. Press enter to view more...".format(total_entries_shown,
-                                                                             self.total_foodtrucks_open))
-        print("\033[A                                   \033[A")
+    def __show_prompt(self, offset):
+        if offset + self.page_limit < self.total_foodtrucks_open:
+            print("\n---------------------------")
+            print("Showing {} of {} results.".format(offset + self.page_limit, self.total_foodtrucks_open))
+            input("Press enter to view more...")
+            print("\033[A                                   \033[A")
+            print("\033[A                                   \033[A")
+            print("\033[A                                   \033[A")
+            print("\033[A                                   \033[A")
 
     def done(self):
         self.api_service.close()
