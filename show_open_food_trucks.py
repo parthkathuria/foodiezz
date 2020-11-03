@@ -82,6 +82,10 @@ class App:
             logging.error("unhandled exception occurred while searching food trucks")
 
     def __update_ptable(self):
+        """
+        Internal method to update data in the PTable object
+        :return: None
+        """
         # initializing two variables here that will be used to define the minimum width of the columns
         # the minimum width will the length of longest name in the data. By setting the minimum width to the length
         # of the longest name, aligns the console output in one line.
