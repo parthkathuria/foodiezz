@@ -162,6 +162,12 @@ class Foodiezz:
 
     @staticmethod
     def display_message(msg=None):
+        """
+        Helper method to print message on the console. Idea behind this method is that if required in future it can
+        call any api to display the output without changing most of the code.
+        :param msg:
+        :return:
+        """
         print(msg)
 
 
