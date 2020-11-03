@@ -1,3 +1,7 @@
+"""
+All the constant values are defined in the file
+"""
+
 ENV_FILE_PATH = "env/config.env"
 
 # default values
