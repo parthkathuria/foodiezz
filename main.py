@@ -17,20 +17,23 @@ current_day_order = now.isoweekday()
 client = Socrata("data.sfgov.org", app_token='G33WjC3q0xOS3jfsZUU2iA3aZ')
 time_str = now.strftime('%H:%M')
 where_query = "start24<='{}' and end24 >= '{}'".format(time_str, time_str)
-results = client.get("jjew-r69b", select='applicant,location,start24,end24', dayorder=current_day_order,
-                     where=where_query, order='applicant', limit=10, offset=0)
+results = client.get("jjew-r69b", select='applicant,location,start24,end24,dayofweekstr',
+                     dayorder=current_day_order,
+                     where=where_query, order='applicant')
 client.close()
 results_df = pd.DataFrame.from_records(results)
-results_df['start24'] = results_df.start24.apply(parse_time_str)
-results_df['end24'] = results_df.end24.apply(parse_time_str)
-# pprint(results_df['start24'].dt.time)
-# pprint(results_df['end24'].dt.time)
-
-time_filter_1 = results_df['start24'] <= now
-time_filter_2 = now <= results_df['end24']
-time_filter = time_filter_1 & time_filter_2
-day_filter = results_df['dayorder'] == now.isoweekday()
-date_time_filter = time_filter  # & day_filter
-filtered_result = results_df.loc[date_time_filter]
-
-final_result = filtered_result.sort_values('applicant')
+print(results_df)
+# results_df['start24'] = results_df.start24.apply(parse_time_str)
+# results_df['end24'] = results_df.end24.apply(parse_time_str)
+# # pprint(results_df['start24'].dt.time)
+# # pprint(results_df['end24'].dt.time)
+#
+# time_filter_1 = results_df['start24'] <= now
+# time_filter_2 = now <= results_df['end24']
+# time_filter = time_filter_1 & time_filter_2
+# day_filter = results_df['dayorder'] == now.isoweekday()
+# date_time_filter = time_filter  # & day_filter
+# filtered_result = results_df.loc[date_time_filter]
+#
+# final_result = filtered_result.sort_values('applicant')
+print(results_df)
