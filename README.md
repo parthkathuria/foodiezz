@@ -30,7 +30,7 @@ or
 venv/bin/python show_open_food_trucks.py
 ```
 
-![](demo.gif)
+![](assets/demo.gif)
 - By default, the app will print only 10 results in the console. If you would like to view more, you can press enter.
 - You can also change the number of results that can be displayed at once by editing the **PAGE_LIMIT** env variable in the environment file `env/config.env`
 
