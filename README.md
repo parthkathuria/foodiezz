@@ -45,4 +45,4 @@ venv/bin/python show_open_food_trucks.py
 ### Future Improvements
 Currently, I am fetching the complete dataset all at once from the SODA API. The reason I am doing this is because some food truck have multiple entries for the same location in the dataset because of multiple timings.
 Once I have the complete dataset, I am using a hash map to remove duplicates from the data and then paginating the results for the output. What I would like to improve here is, if possible, to get the unique data from the SODA API
-using SoQL query and use the pagination feature provided by SoQL. This is helpful when the dataset gets hugh and current approach can crash the process. Also, it is helpful while scaling the app.  
+using SoQL query and use the pagination feature provided by SoQL. This is helpful when the dataset gets huge and current approach can crash the process. Also, it is helpful while scaling the app.  
