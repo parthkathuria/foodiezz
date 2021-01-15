@@ -14,7 +14,7 @@ def parse_time_str(time_str):
 
 now = pd.to_datetime(datetime.now())
 current_day_order = now.isoweekday()
-client = Socrata("data.sfgov.org", app_token='G33WjC3q0xOS3jfsZUU2iA3aZ')
+client = Socrata("data.sfgov.org")
 time_str = now.strftime('%H:%M')
 where_query = "start24<='{}' and end24 >= '{}'".format(time_str, time_str)
 results = client.get("jjew-r69b", select='applicant,location,start24,end24,dayofweekstr',
